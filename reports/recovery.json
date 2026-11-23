@@ -1,9 +1,9 @@
 [
   {
     "attempt": 1,
-    "key": "56444742-45cc-4483-983d-ac0b65d7c610",
+    "key": "c09da038-851e-41a9-ace5-14929b1ccbb1",
     "status": 201,
-    "location": "/api/reservations/972f8c145a6e4b34bba283757f73a80a",
+    "location": "/api/reservations/079866d50f294e188f007fd58bc5e189",
     "body": {
       "available": 0,
       "reserved": 1
@@ -11,9 +11,9 @@
   },
   {
     "attempt": 2,
-    "key": "56444742-45cc-4483-983d-ac0b65d7c610",
+    "key": "c09da038-851e-41a9-ace5-14929b1ccbb1",
     "status": 200,
-    "location": "/api/reservations/972f8c145a6e4b34bba283757f73a80a",
+    "location": "/api/reservations/079866d50f294e188f007fd58bc5e189",
     "body": {
       "available": 0,
       "reserved": 1

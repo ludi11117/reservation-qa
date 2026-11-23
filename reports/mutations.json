@@ -1,0 +1,66 @@
+{
+  "baseline": {
+    "executed": 20,
+    "existing_failures": [],
+    "model_failures": []
+  },
+  "mutations": {
+    "reject_last_unit": {
+      "executed": 20,
+      "existing_failures": [
+        "tests.test_api.test_competing_for_last_unit",
+        "tests.test_lifecycle.test_concurrent_retries_issue_one_receipt",
+        "tests.test_lifecycle.test_cancel_rebook_and_delayed_retry",
+        "tests.test_lifecycle.test_replay_after_app_recreation"
+      ],
+      "model_failures": [
+        "tests.test_state_model.test_all_actions_from_state[missing-missing]",
+        "tests.test_state_model.test_all_actions_from_state[active-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-active]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-cancelled]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-active]",
+        "tests.test_state_model.test_all_actions_from_state[active-cancelled]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-cancelled]"
+      ]
+    },
+    "retry_reports_new_booking": {
+      "executed": 20,
+      "existing_failures": [
+        "tests.test_lifecycle.test_concurrent_retries_issue_one_receipt",
+        "tests.test_lifecycle.test_cancel_rebook_and_delayed_retry",
+        "tests.test_lifecycle.test_replay_after_app_recreation"
+      ],
+      "model_failures": [
+        "tests.test_state_model.test_all_actions_from_state[active-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-active]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-cancelled]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-active]",
+        "tests.test_state_model.test_all_actions_from_state[active-cancelled]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-cancelled]"
+      ]
+    },
+    "cancel_affects_other_bookings": {
+      "executed": 20,
+      "existing_failures": [],
+      "model_failures": [
+        "tests.test_state_model.test_all_actions_from_state[active-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-active]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-active]",
+        "tests.test_state_model.test_all_actions_from_state[active-cancelled]"
+      ]
+    },
+    "unknown_cancel_reports_success": {
+      "executed": 20,
+      "existing_failures": [],
+      "model_failures": [
+        "tests.test_state_model.test_all_actions_from_state[missing-missing]",
+        "tests.test_state_model.test_all_actions_from_state[active-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-active]",
+        "tests.test_state_model.test_all_actions_from_state[cancelled-missing]",
+        "tests.test_state_model.test_all_actions_from_state[missing-cancelled]"
+      ]
+    }
+  }
+}
