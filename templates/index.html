@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>相机借用预约</title>
+<style>
+body{margin:0;background:#eef2ef;color:#17352b;font:18px/1.65 "Microsoft YaHei",sans-serif}
+main{max-width:32rem;margin:12vh auto;padding:2.5rem;background:white;border-top:5px solid #176346}
+h1{margin:0} button{font:inherit;color:white;background:#176346;padding:.5rem 1.5rem;border:0;cursor:pointer}
+button:disabled{background:#64736a;cursor:default} [role=status]{min-height:1.65em}
+</style>
+<main>
+<h1>相机借用预约</h1>
+<p>摄影工作室 · 半日借用</p>
+<p>可预约数量 <strong id="stock">…</strong></p>
+<button disabled>预约一台</button>
+<p role="status"></p>
+</main>
+<script>
+const button = document.querySelector("button");
+const stock = document.querySelector("#stock");
+const statusLine = document.querySelector("[role=status]");
+function showStock(count) {
+  stock.textContent = count;
+  button.disabled = count === 0;
+}
+async function refresh() {
+  const response = await fetch("/api/stock");
+  showStock((await response.json()).available);
+}
+let pendingKey = sessionStorage.getItem("pendingReservation");
+function allowRetry() {
+  statusLine.textContent = "未收到预约回执，请重试";
+  button.textContent = "重试预约";
+  button.disabled = false;
+}
+button.onclick = async () => {
+  button.disabled = true;
+  pendingKey ??= crypto.randomUUID();
+  sessionStorage.setItem("pendingReservation", pendingKey);
+  try {
+    const response = await fetch("/api/reservations", {
+      method: "POST",
+      headers: {"Content-Type": "application/json", "Idempotency-Key": pendingKey},
+      body: JSON.stringify({quantity: 1})
+    });
+    const result = await response.json();
+    if (!response.ok && result.error !== "insufficient_stock") {
+      allowRetry();
+      return;
+    }
+    sessionStorage.removeItem("pendingReservation");
+    pendingKey = null;
+    button.textContent = "预约一台";
+    showStock(result.available);
+    statusLine.textContent = response.ok ? "预约成功" : "库存不足，请下次再来";
+  } catch {
+    allowRetry();
+  }
+};
+if (pendingKey) allowRetry();
+else refresh();
+</script>
+</html>

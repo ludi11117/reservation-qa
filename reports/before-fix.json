@@ -1,0 +1,12 @@
+[
+  {
+    "attempt": 1,
+    "key": null,
+    "status": 201,
+    "location": null,
+    "body": {
+      "available": 0,
+      "reserved": 1
+    }
+  }
+]

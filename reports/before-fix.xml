@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="6.672" timestamp="2026-11-23T09:27:17.482027+08:00"><testcase classname="tests.test_recovery" name="test_lost_receipt_retry" time="6.280"><failure message="AssertionError: Locator expected to have text '未收到预约回执，请重试'&#10;Actual value:  &#10;Call log:&#10;  - Expect &quot;to_have_text&quot; get_by_role(&quot;status&quot;) with timeout 5000ms&#10;  - waiting for get_by_role(&quot;status&quot;)&#10;    14 × locator resolved to &lt;p role=&quot;status&quot;&gt;&lt;/p&gt;&#10;       - unexpected value &quot;&quot;&#10;&#10;Aria snapshot:&#10;- status">tests\test_recovery.py:37: in test_lost_receipt_retry
+    expect(page.get_by_role("status")).to_have_text("未收到预约回执，请重试")
+E   AssertionError: Locator expected to have text '未收到预约回执，请重试'
+E   Actual value:  
+E   Call log:
+E     - Expect "to_have_text" get_by_role("status") with timeout 5000ms
+E     - waiting for get_by_role("status")
+E       14 × locator resolved to &lt;p role="status"&gt;&lt;/p&gt;
+E          - unexpected value ""
+E   
+E   Aria snapshot:
+E   - status</failure></testcase></testsuite></testsuites>
