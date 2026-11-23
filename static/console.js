@@ -79,6 +79,12 @@ reserve.onclick = async () => {
       headers: {"Content-Type": "application/json", "Idempotency-Key": pendingKey},
       body: JSON.stringify({quantity: 1})
     });
+    const dropReceipt = document.querySelector("#drop-receipt");
+    if (response.ok && dropReceipt.checked) {
+      dropReceipt.checked = false;
+      allowRetry();
+      return;
+    }
     if (!response.ok && data.error !== "insufficient_stock") {
       allowRetry();
       return;
